@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CHANDU FIRE & SAFETY EQUIPMENTS</title>
+  <meta name="description" content="Complete Fire & Safety Equipment Sales, Service, AMC & Training in Karnataka."/>
+  <meta property="og:title" content="CHANDU FIRE & SAFETY EQUIPMENTS"/>
+  <meta property="og:description" content="Sales, Service, AMC & Training across Karnataka."/>
+  <meta property="og:type" content="website"/>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script defer src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script defer src="main.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 bg-white shadow-md">
+    <div class="container mx-auto px-6 py-3 flex items-center justify-between">
+      <a href="#home" class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-bold">CF</div>
+        <div>
+          <div class="text-lg font-extrabold">CHANDU</div>
+          <div class="text-xs text-gray-500 -mt-1">Fire & Safety Equipments</div>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex space-x-6 font-semibold">
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#products">Products</a>
+        <a class="nav-link" href="#services">Services</a>
+        <a class="nav-link" href="#testimonials">Testimonials</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+
+      <div class="flex items-center space-x-3">
+        <a href="tel:+917022138273" class="hidden md:inline-block px-4 py-2 border border-red-600 text-red-600 rounded-lg font-semibold hover:bg-red-50">+91 70221 38273</a>
+        <button id="menuToggle" class="md:hidden p-2 rounded hover:bg-gray-100">
+          <svg width="24" height="24" fill="none" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+      <div class="px-6 py-4 flex flex-col space-y-2">
+        <a class="py-2" href="#home">Home</a>
+        <a class="py-2" href="#products">Products</a>
+        <a class="py-2" href="#services">Services</a>
+        <a class="py-2" href="#testimonials">Testimonials</a>
+        <a class="py-2" href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="relative overflow-hidden">
+    <canvas id="bgCanvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+
+    <div class="container mx-auto px-6 py-24 relative z-10">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div data-aos="fade-right">
+          <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+            Your Trusted Partner in <span class="text-red-600">Fire & Industrial Safety</span>
+          </h1>
+          <p class="mt-4 text-lg text-gray-600">Sales, Service, AMC & Corporate Training across Karnataka. Hydrant systems, alarms, suppression, PPE and more.</p>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#contact" class="px-6 py-3 bg-red-600 text-white rounded-lg font-semibold shadow hover:scale-105 transform transition">Get Consultation</a>
+            <a href="#products" class="px-6 py-3 border border-gray-200 rounded-lg hover:bg-gray-50">View Products</a>
+          </div>
+
+          <div class="mt-8 grid grid-cols-3 gap-4">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-red-600 counter" data-target="350">0</div>
+              <div class="text-xs text-gray-500">Products</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-red-600 counter" data-target="1200">0</div>
+              <div class="text-xs text-gray-500">Satisfied Clients</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-red-600 counter" data-target="15">0</div>
+              <div class="text-xs text-gray-500">Years</div>
+            </div>
+          </div>
+        </div>
+
+        <div data-aos="fade-left" class="relative">
+          <div class="rounded-xl overflow-hidden shadow-xl bg-white p-4">
+            <img src="https://i.ibb.co/z3XFpTW/IMG-20251110-204333.jpg" alt="fire-extinguisher" class="w-full h-64 object-cover rounded-md">
+            <div class="mt-4">
+              <h3 class="font-bold text-lg">ABC Type (DCP)</h3>
+              <p class="text-sm text-gray-600">Multipurpose extinguisher for A, B and C class fires. Refillable and ISI certified options available.</p>
+            </div>
+          </div>
+          <div class="absolute -right-8 -bottom-8 w-48 h-48 rounded-full bg-red-100/80 blur-2xl"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-6">Our Products</h2>
+
+      <!-- Filters -->
+      <div class="flex items-center gap-3 mb-6 flex-wrap">
+        <button class="filter-btn px-4 py-2 rounded-md bg-red-600 text-white" data-filter="all">All</button>
+        <button class="filter-btn px-4 py-2 rounded-md bg-white border" data-filter="extinguisher">Extinguishers</button>
+        <button class="filter-btn px-4 py-2 rounded-md bg-white border" data-filter="hydrant">Hydrant</button>
+        <button class="filter-btn px-4 py-2 rounded-md bg-white border" data-filter="alarm">Alarm</button>
+      </div>
+
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productGrid">
+        <!-- product cards (data-category attribute used for filtering) -->
+        <div class="product-card bg-white rounded-xl shadow p-4" data-category="extinguisher" data-aos="zoom-in">
+          <img src="https://i.ibb.co/z3XFpTW/IMG-20251110-204333.jpg" class="w-full h-36 object-cover rounded">
+          <h4 class="font-bold mt-3">ABC Type (DCP)</h4>
+          <p class="text-sm text-gray-600">Multipurpose for A, B, C fires.</p>
+        </div>
+        <div class="product-card bg-white rounded-xl shadow p-4" data-category="extinguisher" data-aos="zoom-in">
+          <img src="https://i.ibb.co/BVX6cqfB/IMG-20251110-204704.jpg" class="w-full h-36 object-cover rounded">
+          <h4 class="font-bold mt-3">CO₂ Type</h4>
+          <p class="text-sm text-gray-600">Ideal for electrical & liquid fires.</p>
+        </div>
+        <div class="product-card bg-white rounded-xl shadow p-4" data-category="extinguisher" data-aos="zoom-in">
+          <img src="https://i.ibb.co/Q7kJX4jn/IMG-20251110-205156.jpg" class="w-full h-36 object-cover rounded">
+          <h4 class="font-bold mt-3">Water Mist</h4>
+          <p class="text-sm text-gray-600">For A, F, and electrical scenarios.</p>
+        </div>
+        <div class="product-card bg-white rounded-xl shadow p-4" data-category="extinguisher" data-aos="zoom-in">
+          <img src="https://i.ibb.co/9HxcbHB0/IMG-20251110-205459.jpg" class="w-full h-36 object-cover rounded">
+          <h4 class="font-bold mt-3">Mechanical Foam</h4>
+          <p class="text-sm text-gray-600">Effective on liquid fires.</p>
+        </div>
+
+        <div class="product-card bg-white rounded-xl shadow p-4" data-category="hydrant" data-aos="zoom-in">
+          <img src="https://i.ibb.co/9HxcbHB0/IMG-20251110-205459.jpg" class="w-full h-36 object-cover rounded">
+          <h4 class="font-bold mt-3">Hydrant Valve</h4>
+          <p class="text-sm text-gray-600">Standard hydrant valve for building networks.</p>
+        </div>
+        <div class="product-card bg-white rounded-xl shadow p-4" data-category="hydrant" data-aos="zoom-in">
+          <img src="https://i.ibb.co/placeholder/placeholder.png" class="w-full h-36 object-cover rounded" alt="">
+          <h4 class="font-bold mt-3">Fire Pump</h4>
+          <p class="text-sm text-gray-600">Diesel & electric pump sets for high flow.</p>
+        </div>
+
+        <div class="product-card bg-white rounded-xl shadow p-4" data-category="alarm" data-aos="zoom-in">
+          <img src="https://i.ibb.co/placeholder/placeholder.png" class="w-full h-36 object-cover rounded" alt="">
+          <h4 class="font-bold mt-3">Smoke Detector</h4>
+          <p class="text-sm text-gray-600">Photoelectric smoke detection.</p>
+        </div>
+        <div class="product-card bg-white rounded-xl shadow p-4" data-category="alarm" data-aos="zoom-in">
+          <img src="https://i.ibb.co/placeholder/placeholder.png" class="w-full h-36 object-cover rounded" alt="">
+          <h4 class="font-bold mt-3">Control Panel</h4>
+          <p class="text-sm text-gray-600">Addressable & conventional panels.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-16">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-6">Services</h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="service-card p-6 bg-white rounded-xl shadow" data-aos="fade-up">
+          <h3 class="font-bold text-lg">Extinguisher Service & AMC</h3>
+          <p class="text-sm text-gray-600 mt-2">Refilling, hydro tests, AMC and certification.</p>
+        </div>
+        <div class="service-card p-6 bg-white rounded-xl shadow" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="font-bold text-lg">Hydrant & Pump Works</h3>
+          <p class="text-sm text-gray-600 mt-2">Design, install and test pump systems.</p>
+        </div>
+        <div class="service-card p-6 bg-white rounded-xl shadow" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="font-bold text-lg">Alarm Installation & AMC</h3>
+          <p class="text-sm text-gray-600 mt-2">Detectors, control panels and maintenance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-6">What Our Clients Say</h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-6 bg-white rounded-xl shadow" data-aos="flip-left">
+          <p class="text-sm text-gray-600">"Fast service and reliable technicians. Highly recommended."</p>
+          <div class="mt-4 text-sm font-semibold">— Ramesh, Facility Manager</div>
+        </div>
+        <div class="p-6 bg-white rounded-xl shadow" data-aos="flip-left" data-aos-delay="100">
+          <p class="text-sm text-gray-600">"Good pricing and prompt AMC response."</p>
+          <div class="mt-4 text-sm font-semibold">— Priya, School Admin</div>
+        </div>
+        <div class="p-6 bg-white rounded-xl shadow" data-aos="flip-left" data-aos-delay="200">
+          <p class="text-sm text-gray-600">"Professional installation of hydrant system for our complex."</p>
+          <div class="mt-4 text-sm font-semibold">— Ajay, Builder</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-16 bg-red-50">
+    <div class="container mx-auto px-6 max-w-3xl">
+      <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+      <p class="text-gray-700 mb-6">Phone: <a href="tel:+917022138273" class="text-red-600 font-semibold">+91 70221 38273</a></p>
+
+      <form id="contactForm" class="grid gap-4">
+        <input name="name" required class="p-3 rounded border" placeholder="Your name" />
+        <input name="email" type="email" required class="p-3 rounded border" placeholder="Your email" />
+        <textarea name="message" required class="p-3 rounded border" rows="5" placeholder="Message"></textarea>
+        <div class="flex items-center gap-3">
+          <button type="submit" class="px-5 py-3 bg-red-600 text-white rounded-lg font-semibold">Send Inquiry</button>
+          <a href="https://wa.me/917022138273" target="_blank" class="px-5 py-3 bg-green-600 text-white rounded-lg font-semibold">WhatsApp</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t mt-12">
+    <div class="container mx-auto px-6 py-8 text-sm text-gray-600 flex flex-col md:flex-row justify-between items-center">
+      <div>&copy; 2025 CHANDU FIRE & SAFETY EQUIPMENTS. All rights reserved.</div>
+      <div class="mt-3 md:mt-0">GSTIN: 29BAUPV5152M1ZL</div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/917022138273" target="_blank" class="fixed right-5 bottom-5 bg-green-500 w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-white z-50 hover:scale-105 transition" title="WhatsApp">
+    <svg width="24" height="24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z" stroke-width="1.6"/></svg>
+  </a>
+
+</body>
+</html>
