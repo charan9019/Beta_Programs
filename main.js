@@ -2,39 +2,51 @@
 
 document.addEventListener('DOMContentLoaded', function(){
 
-  // AOS init
-  if(window.AOS) AOS.init({ duration: 700, once: true });
+  // 1. Initialize 3D Background (Three.js)
+  initThreeJS();
 
-  // Mobile toggle
+  // 2. AOS (Scroll Animations)
+  if(window.AOS) AOS.init({ duration: 800, once: true, offset: 100 });
+
+  // 3. Mobile Menu Toggle
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
   if(menuToggle){
     menuToggle.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
   }
 
-  // Smooth scroll for internal links
+  // 4. Smooth Scroll
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click', function(e){
       const target = document.querySelector(this.getAttribute('href'));
       if(target){
         e.preventDefault();
+        mobileMenu.classList.add('hidden'); // Close menu on click
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   });
 
-  // Product filter
+  // 5. Product Filter Logic
   document.querySelectorAll('.filter-btn').forEach(btn=>{
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b=> b.classList.remove('bg-red-600','text-white'));
-      btn.classList.add('bg-red-600','text-white');
+      // Style updates
+      document.querySelectorAll('.filter-btn').forEach(b=> {
+        b.classList.remove('bg-red-600','text-white','shadow-md');
+        b.classList.add('bg-gray-100','text-gray-600');
+      });
+      btn.classList.remove('bg-gray-100','text-gray-600');
+      btn.classList.add('bg-red-600','text-white','shadow-md');
 
+      // Filtering logic
       const filter = btn.getAttribute('data-filter');
       document.querySelectorAll('#productGrid > div').forEach(card=>{
         const cat = card.getAttribute('data-category') || 'all';
         if(filter==='all' || filter === cat){
           card.style.display = '';
-          card.classList.remove('opacity-0','scale-95');
+          // Reset animation
+          card.classList.remove('aos-animate');
+          setTimeout(()=> card.classList.add('aos-animate'), 50);
         } else {
           card.style.display = 'none';
         }
@@ -42,11 +54,11 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 
-  // Counters animation when in viewport
+  // 6. Number Counters
   const counters = document.querySelectorAll('.counter');
   const runCounter = (el) => {
     const target = +el.getAttribute('data-target');
-    const duration = 1400;
+    const duration = 1500;
     let start = 0;
     const step = (timestamp) => {
       start += Math.ceil(target / (duration / 16));
@@ -56,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function(){
     };
     requestAnimationFrame(step);
   };
+  
   const obs = new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting){
@@ -66,47 +79,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }, { threshold: 0.6 });
   counters.forEach(c => obs.observe(c));
 
-  // Simple canvas background (soft animated particles)
-  (function canvasBG(){
-    const canvas = document.getElementById('bgCanvas');
-    if(!canvas) return;
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight * 0.6;
-    const ctx = canvas.getContext('2d');
-
-    const particles = [];
-    for(let i=0;i<60;i++){
-      particles.push({
-        x: Math.random()*canvas.width,
-        y: Math.random()*canvas.height,
-        r: 1 + Math.random()*3,
-        vx: (Math.random()-0.5)*0.3,
-        vy: -0.1 - Math.random()*0.3,
-        alpha: 0.03 + Math.random()*0.12
-      });
-    }
-
-    function draw(){
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      particles.forEach(p=>{
-        p.x += p.vx; p.y += p.vy;
-        if(p.y < -10){ p.y = canvas.height + 10; p.x = Math.random()*canvas.width; }
-        ctx.beginPath();
-        ctx.fillStyle = 'rgba(204,0,0,'+p.alpha+')';
-        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fill();
-      });
-      requestAnimationFrame(draw);
-    }
-    draw();
-
-    window.addEventListener('resize', ()=> {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight * 0.6;
-    });
-  })();
-
-  // Contact form submit - opens mailto (fallback)
+  // 7. Contact Form Handler
   const contactForm = document.getElementById('contactForm');
   if(contactForm){
     contactForm.addEventListener('submit', function(e){
@@ -115,10 +88,100 @@ document.addEventListener('DOMContentLoaded', function(){
       const name = form.get('name') || '';
       const email = form.get('email') || '';
       const message = form.get('message') || '';
-      const subject = encodeURIComponent('Website Inquiry from ' + name);
-      const body = encodeURIComponent('Name: '+name+'%0AEmail: '+email+'%0A%0AMessage:%0A'+message);
+      
+      const subject = encodeURIComponent('Inquiry from ' + name);
+      const body = encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\nMessage:\n'+message);
+      
+      // Open Mail Client
       window.location.href = `mailto:chandufiresafetyhsn@gmail.com?subject=${subject}&body=${body}`;
     });
   }
-
 });
+
+/**
+ * THREE.JS INTERACTIVE BACKGROUND
+ * Creates a floating particle mesh that rotates and reacts to mouse.
+ */
+function initThreeJS() {
+  const container = document.getElementById('three-canvas-container');
+  if(!container) return;
+
+  // Scene Setup
+  const scene = new THREE.Scene();
+  
+  // Camera
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 30;
+
+  // Renderer
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  container.appendChild(renderer.domElement);
+
+  // Geometry: Particles
+  const geometry = new THREE.BufferGeometry();
+  const count = 600;
+  const posArray = new Float32Array(count * 3);
+
+  for(let i = 0; i < count * 3; i++) {
+    // Spread particles wide
+    posArray[i] = (Math.random() - 0.5) * 60; 
+  }
+
+  geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+  // Material (Red Points)
+  const material = new THREE.PointsMaterial({
+    size: 0.15,
+    color: 0xcc0000, // Brand Red
+    transparent: true,
+    opacity: 0.8,
+  });
+
+  // Mesh
+  const particlesMesh = new THREE.Points(geometry, material);
+  scene.add(particlesMesh);
+
+  // Mouse Interaction Variables
+  let mouseX = 0;
+  let mouseY = 0;
+  let targetX = 0;
+  let targetY = 0;
+
+  const windowHalfX = window.innerWidth / 2;
+  const windowHalfY = window.innerHeight / 2;
+
+  document.addEventListener('mousemove', (event) => {
+    mouseX = (event.clientX - windowHalfX);
+    mouseY = (event.clientY - windowHalfY);
+  });
+
+  // Animation Loop
+  const clock = new THREE.Clock();
+
+  function animate() {
+    targetX = mouseX * 0.001;
+    targetY = mouseY * 0.001;
+
+    // Automatic smooth rotation
+    particlesMesh.rotation.y += 0.002;
+    particlesMesh.rotation.x += 0.001;
+
+    // Interactive easing rotation based on mouse
+    particlesMesh.rotation.y += 0.05 * (targetX - particlesMesh.rotation.y);
+    particlesMesh.rotation.x += 0.05 * (targetY - particlesMesh.rotation.x);
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  // Handle Resize
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+}
